@@ -149,38 +149,57 @@ start_jupyter() {
 show_status() {
     print_status "Baker Street Laboratory System Status"
     echo "======================================"
-    
-    # Python version
-    echo "Python: $(python3 --version)"
-    
-    # Virtual environment
-    if [ -d ".venv" ]; then
-        echo "Virtual Environment: ✅ Active"
-    else
-        echo "Virtual Environment: ❌ Not found"
-    fi
-    
-    # Environment file
-    if [ -f ".env" ]; then
-        echo "Environment Config: ✅ Found"
-    else
-        echo "Environment Config: ❌ Not found"
-    fi
-    
-    # Database status
-    if [ -f "data/metadata.db" ]; then
-        echo "Metadata Database: ✅ Initialized"
-    else
-        echo "Metadata Database: ⚠️  Not initialized"
-    fi
-    
-    # Vector store
-    if [ -d "data/vector_store" ]; then
-        echo "Vector Store: ✅ Directory exists"
-    else
-        echo "Vector Store: ❌ Directory not found"
-    fi
-    
+
+    # Use Python to get detailed status
+    python3 -c "
+import sys
+import os
+sys.path.insert(0, 'implementation/src')
+
+from utils.environment import check_environment, get_database_status, format_file_size
+
+# Get environment status
+env_status = check_environment()
+
+# Display Python version
+print(f'Python: {env_status[\"checks\"][\"python_version\"]}')
+
+# Virtual environment
+if env_status['checks']['virtual_env']:
+    print('Virtual Environment: ✅ Active')
+else:
+    print('Virtual Environment: ❌ Not active')
+
+# Environment file
+if env_status['checks']['env_file']:
+    print('Environment Config: ✅ Found')
+else:
+    print('Environment Config: ❌ Not found')
+
+# Database status
+db_status = get_database_status()
+if db_status['exists'] and db_status['valid']:
+    size_str = format_file_size(db_status['size'])
+    version = db_status.get('version', 'Unknown')
+    print(f'Metadata Database: ✅ Initialized (v{version}, {size_str})')
+elif db_status['exists']:
+    print('Metadata Database: ⚠️  Exists but invalid')
+else:
+    print('Metadata Database: ❌ Not initialized')
+
+# Vector store
+if os.path.exists('data/vector_store'):
+    print('Vector Store: ✅ Directory exists')
+else:
+    print('Vector Store: ❌ Directory not found')
+
+# API Keys
+if env_status['checks']['api_keys']:
+    print('API Keys: ✅ Configured')
+else:
+    print('API Keys: ⚠️  Not configured')
+"
+
     echo
     print_success "Status check complete"
 }

@@ -117,11 +117,14 @@ create_directories() {
 # Initialize databases
 init_databases() {
     print_status "Initializing databases..."
-    
-    # This will be implemented when we create the database initialization script
-    # python3 implementation/src/init_db.py
-    
-    print_success "Database initialization prepared"
+
+    # Run the database initialization script
+    if python3 implementation/src/database/init_db.py; then
+        print_success "Database initialized successfully"
+    else
+        print_error "Database initialization failed"
+        exit 1
+    fi
 }
 
 # Install optional tools
