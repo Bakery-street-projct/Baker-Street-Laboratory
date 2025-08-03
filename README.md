@@ -2,9 +2,11 @@
 
 **An AI-Augmented Research Framework for Systematic Knowledge Discovery**
 
-[![CI Status](https://github.com/YourOrg/Baker-Street-Laboratory/workflows/Baker%20Street%20Laboratory%20CI/badge.svg)](https://github.com/YourOrg/Baker-Street-Laboratory/actions)
+[![CI Status](https://github.com/BoozeLee/Baker-Street-Laboratory/workflows/Baker%20Street%20Laboratory%20CI/badge.svg)](https://github.com/BoozeLee/Baker-Street-Laboratory/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/BoozeLee?style=social)](https://github.com/sponsors/BoozeLee)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/boozelee)
 
 Baker Street Laboratory is a comprehensive framework for conducting AI-augmented research with full reproducibility, collaboration, and automation capabilities. Named after the famous detective's methodical approach to investigation, this system orchestrates multiple AI agents to gather, analyze, synthesize, and document research findings.
 
@@ -203,12 +205,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Documentation**: [GitHub Wiki](https://github.com/YourOrg/Baker-Street-Laboratory/wiki)
-- **Issues**: [GitHub Issues](https://github.com/YourOrg/Baker-Street-Laboratory/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YourOrg/Baker-Street-Laboratory/discussions)
+- **Documentation**: [GitHub Wiki](https://github.com/BoozeLee/Baker-Street-Laboratory/wiki)
+- **Issues**: [GitHub Issues](https://github.com/BoozeLee/Baker-Street-Laboratory/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/BoozeLee/Baker-Street-Laboratory/discussions)
 
 ---
 
 **Happy Researching! 🔬**
 
 *"When you have eliminated the impossible, whatever remains, however improbable, must be the truth."* - Sherlock Holmes
+
+---
+
+## 💖 Support the Project
+
+If Baker Street Laboratory has helped your research, consider supporting its development:
+
+[![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/BoozeLee)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/boozelee)
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/boozelee)
+
+Your support helps maintain and improve this open-source research framework for the entire community! 🙏
