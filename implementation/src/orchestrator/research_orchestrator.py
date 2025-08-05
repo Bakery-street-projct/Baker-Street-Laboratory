@@ -12,6 +12,7 @@ from typing import Dict, Any, Optional, List
 
 from core.config import Config
 from core.logger import get_logger, create_session_logger
+from ai.ollama_client import OllamaClient
 
 
 class ResearchOrchestrator:
@@ -31,7 +32,33 @@ class ResearchOrchestrator:
         self.logger = get_logger(__name__)
         self.session_id = str(uuid.uuid4())[:8]
         self.session_logger = None
-        
+
+        # Initialize AI clients
+        self.ollama_client = OllamaClient()
+        self.ollama_available = False
+
+    async def initialize(self) -> bool:
+        """
+        Initialize the research orchestrator and AI clients.
+
+        Returns:
+            True if initialization successful, False otherwise
+        """
+        try:
+            # Initialize Ollama client
+            self.ollama_available = await self.ollama_client.initialize()
+
+            if self.ollama_available:
+                self.logger.info("Ollama client initialized successfully")
+            else:
+                self.logger.warning("Ollama client not available, falling back to other AI services")
+
+            return True
+
+        except Exception as e:
+            self.logger.error(f"Failed to initialize research orchestrator: {e}")
+            return False
+
     async def conduct_research(
         self, 
         query: str, 
@@ -99,11 +126,48 @@ class ResearchOrchestrator:
             }
     
     async def _analyze_query(self, query: str) -> Dict[str, Any]:
-        """Analyze the research query and create a research plan."""
-        self.logger.info("Analyzing research query...")
-        
-        # For demonstration, create a basic research plan
-        # In a full implementation, this would use AI agents to analyze the query
+        """Analyze the research query and create a research plan using Ollama AI."""
+        self.logger.info("Analyzing research query with AI assistance...")
+
+        research_plan = {
+            "query": query,
+            "timestamp": datetime.now().isoformat(),
+            "analysis_method": "basic"
+        }
+
+        # Use Ollama for advanced query analysis if available
+        if self.ollama_available:
+            try:
+                self.logger.info("Using Ollama for query analysis...")
+                ollama_analysis = await self.ollama_client.analyze_research_query(query)
+
+                if ollama_analysis['success']:
+                    research_plan.update({
+                        "analysis_method": "ollama_ai",
+                        "ai_analysis": ollama_analysis.get('structured_analysis', {}),
+                        "processing_time": ollama_analysis.get('processing_time', 0),
+                        "model_used": ollama_analysis.get('model', 'unknown')
+                    })
+
+                    # Extract structured information if available
+                    if 'structured_analysis' in ollama_analysis:
+                        analysis = ollama_analysis['structured_analysis']
+                        research_plan.update({
+                            "key_concepts": analysis.get('key_concepts', []),
+                            "research_approaches": analysis.get('research_approaches', []),
+                            "suggested_sources": analysis.get('data_sources', []),
+                            "complexity_score": analysis.get('complexity_score', 5),
+                            "estimated_time": analysis.get('estimated_time', 'unknown')
+                        })
+
+                    self.logger.info("Ollama query analysis completed successfully")
+                else:
+                    self.logger.warning(f"Ollama analysis failed: {ollama_analysis.get('error')}")
+
+            except Exception as e:
+                self.logger.error(f"Ollama query analysis failed: {e}")
+
+        # Fallback to basic analysis if Ollama not available
         plan = {
             "query": query,
             "research_type": self._determine_research_type(query),
@@ -132,11 +196,52 @@ class ResearchOrchestrator:
         return collected_data
     
     async def _analyze_data(self, collected_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Analyze the collected data and extract insights."""
-        self.logger.info("Analyzing collected data...")
-        
-        # Simulate analysis
-        # In a full implementation, this would use AI agents for analysis
+        """Analyze the collected data and extract insights using Ollama AI."""
+        self.logger.info("Analyzing collected data with AI assistance...")
+
+        analysis_results = {
+            "timestamp": datetime.now().isoformat(),
+            "analysis_method": "basic",
+            "data_sources": list(collected_data.keys())
+        }
+
+        # Use Ollama for advanced data synthesis if available
+        if self.ollama_available and collected_data.get('sources'):
+            try:
+                self.logger.info("Using Ollama for data synthesis...")
+
+                # Prepare findings for synthesis
+                findings = []
+                for source_name, source_data in collected_data.get('sources', {}).items():
+                    if isinstance(source_data, dict) and 'content' in source_data:
+                        findings.append({
+                            'source': source_name,
+                            'content': source_data['content'][:1000],  # Limit content length
+                            'summary': source_data.get('summary', '')
+                        })
+
+                if findings:
+                    synthesis_result = await self.ollama_client.synthesize_research_findings(
+                        findings=findings,
+                        query=collected_data.get('query', 'Unknown query')
+                    )
+
+                    if synthesis_result['success']:
+                        analysis_results.update({
+                            "analysis_method": "ollama_synthesis",
+                            "ai_synthesis": synthesis_result['response'],
+                            "processing_time": synthesis_result.get('processing_time', 0),
+                            "model_used": synthesis_result.get('model', 'unknown'),
+                            "findings_processed": len(findings)
+                        })
+                        self.logger.info("Ollama data synthesis completed successfully")
+                    else:
+                        self.logger.warning(f"Ollama synthesis failed: {synthesis_result.get('error')}")
+
+            except Exception as e:
+                self.logger.error(f"Ollama data analysis failed: {e}")
+
+        # Basic analysis fallback
         analysis = {
             "key_findings": [
                 "Multiple philosophical perspectives exist on this topic",

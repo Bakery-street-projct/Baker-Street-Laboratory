@@ -129,3 +129,13 @@ tools:
       base_url: "http://export.arxiv.org/api/query"
     - name: "pubmed"
       base_url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
+
+# Drive Research Pipeline
+research_pipeline:
+  stages:
+    - data_collection:
+        target: "/media/batman/2e5c0fde-0328-49e4-8d37-dd18be027734/"
+        capabilities: ["file_traversal", "metadata_extraction"]
+    - analysis:
+        focus: "pattern_recognition"
+    - synthesis:
