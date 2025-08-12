@@ -38,7 +38,7 @@
 
 ---
 
-Baker Street Laboratory is a comprehensive framework for conducting AI-augmented research with full reproducibility, collaboration, and automation capabilities. Named after the famous detective's methodical approach to investigation, this system orchestrates multiple AI agents to gather, analyze, synthesize, and document research findings.
+Welcome to Baker Street Laboratory! This comprehensive framework makes AI-augmented research accessible with full reproducibility, collaboration, and automation capabilities. Named after the famous detective's methodical approach to investigation, this system orchestrates multiple AI agents to gather, analyze, synthesize, and document research findings with ease.
 
 ## 🎯 Key Features
 
@@ -52,7 +52,7 @@ Baker Street Laboratory is a comprehensive framework for conducting AI-augmented
 
 ## 🏗️ Architecture
 
-```
+```text
 baker-street-laboratory/
 ├── research/                    # Research outputs organized by stage
 │   ├── 01_initial_queries/     # Research questions and hypotheses
@@ -76,6 +76,8 @@ baker-street-laboratory/
 
 ## 🚀 Quick Start - Ready for Breakthrough Research!
 
+> 💡 **New to Baker Street Laboratory?** Check out our detailed [Quick Start Guide](./QUICK_START_GUIDE.md) for step-by-step instructions!
+
 ### 🎭 **Immediate Usage (System is 95% Operational!)**
 
 ```bash
@@ -83,7 +85,7 @@ baker-street-laboratory/
 cd Baker-Street-Laboratory
 
 # Launch breakthrough research (Ready Now!)
-python3 research_launcher.py "AI-enhanced drug discovery for depression" drug_discovery
+python3 implementation/src/main.py "AI-enhanced drug discovery for depression" drug_discovery
 
 # Direct specialist access
 echo "Design a clinical trial for psilocybin treatment" | ollama run baker-street-scientific
@@ -98,23 +100,25 @@ echo "Analyze brain imaging patterns" | ollama run baker-street-vision
 
 ```bash
 # Complete drug discovery pipeline
-python3 research_launcher.py "Psilocybin depression treatment optimization" drug_discovery
+python3 implementation/src/main.py "Psilocybin depression treatment optimization" drug_discovery
 
 # Neuroscience investigation
-python3 research_launcher.py "Default mode network connectivity patterns" neuroscience
+python3 implementation/src/main.py "Default mode network connectivity patterns" neuroscience
 
 # Legal compliance analysis
-python3 research_launcher.py "Regulatory framework for psychedelic research" legal
+python3 implementation/src/main.py "Regulatory framework for psychedelic research" legal
 
 # Creative research communication
-python3 research_launcher.py "Public engagement for breakthrough findings" communication
+python3 implementation/src/main.py "Public engagement for breakthrough findings" communication
 ```
 
-### 1. Installation (If Not Already Set Up)
+### 1. Installation
+
+If you haven't set up Baker Street Laboratory yet, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YourOrg/Baker-Street-Laboratory.git
+git clone https://github.com/BoozeLee/Baker-Street-Laboratory.git
 cd Baker-Street-Laboratory
 
 # Run the installation script
@@ -122,6 +126,8 @@ cd Baker-Street-Laboratory
 ```
 
 ### 2. Configuration
+
+Set up your environment variables for API access:
 
 ```bash
 # Copy the environment template
@@ -159,7 +165,7 @@ The framework includes several specialized AI agents:
 - **Synthesizer**: Combines findings into coherent insights
 - **Code Generator**: Creates implementation code based on research
 
-Each agent is configurable via `config/agents.yaml` with customizable:
+Each agent is configurable via [`config/agents.yaml`](./config/agents.yaml) with customizable:
 - Model selection (GPT-4, GPT-3.5, Claude, etc.)
 - Temperature and token limits
 - Capabilities and tools
@@ -255,11 +261,11 @@ pytest implementation/tests/pipelines/ -v
 5. Push to the branch (`git push origin feature/amazing-agent`)
 6. Open a Pull Request
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -272,6 +278,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Documentation**: [GitHub Wiki](https://github.com/BoozeLee/Baker-Street-Laboratory/wiki)
 - **Issues**: [GitHub Issues](https://github.com/BoozeLee/Baker-Street-Laboratory/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/BoozeLee/Baker-Street-Laboratory/discussions)
+- **Security**: [Security Policy](./SECURITY.md)
+- **Project Showcase**: [See what others are building](./PROJECT_SHOWCASE.md)
 
 ---
 
