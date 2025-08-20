@@ -290,3 +290,19 @@ If Baker Street Laboratory has helped your research, consider supporting its dev
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/boozelee)
 
 Your support helps maintain and improve this open-source research framework for the entire community! 🙏
+
+## 💖 Support Our Work
+
+If you find this project useful, please consider supporting us:
+
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/REALbakerstreet221b)
+
+**Bank Transfer (Lowest Fees):**
+- **IBAN**: BE70 9051 5229 1825
+- **BIC/SWIFT**: WIREDEMMXXX
+- **Account Holder**: Kiliaan V
+- **Bank**: Wise (formerly TransferWise)
+- **Wise Tag**: @kiliaanv
+
+See [SUPPORT.md](SUPPORT.md) for more details.
+
